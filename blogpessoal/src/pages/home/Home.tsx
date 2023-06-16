@@ -1,22 +1,30 @@
-import React from "react";
-import {Button, Paper, Box} from '@material-ui/core'
+
+
 import './Home.css';
+import { Box, Button, Grid, Typography } from "@mui/material";
 
 function Home() {
 return(
     <>
-    <Paper>
-        <Box p={2}>
-            <Box display="flex" justifyContent="center">
-                <h1>Título</h1>
-            </Box>
-            <img src="./images/vesgo2.jpg" alt="" style={{width:"100%", height:"100%"}} />
-            <Box display="flex" justifyContent="center" p={2}>
-                <Button variant="contained" color="primary"> Vesgueiro </Button>
-                <Button variant="contained" color="secondary"> Vesgueiro </Button>
-            </Box>
+   <Grid container direction="row" justifyContent="Center" alignItems="center" style={{backgroundColor: "#AD8566ff"}}>
+    <Grid alignItems="center" item xs={6}>
+        <Box paddingX={20} >
+            <Typography variant="h3" gutterBottom color="textPrimary" component="h3" align="center" style={{color: "#341911ff", fontWeight:'bold'}}>Seja bem vindo(a)!</Typography>
+            <Typography variant="h5" gutterBottom color="textPrimary" component="h5" align="center" style={{color: "#341911ff", fontWeight:'bold'}}>Conte aqui seus sonhos e momentos mais felizes!</Typography>
         </Box>
-    </Paper>
+        <Box display='flex' justifyContent='center'>
+            <Box marginRight={1}>
+                </Box>
+                <Button variant="outlined" style={{ borderColor: '#341911ff', backgroundColor: "#AD8566ff", color: "#341911ff"}}>Ver Postagens</Button>
+                </Box>
+                </Grid>
+                <Grid item xs={3} >
+                    <img src="./images/agrvai.jpg" alt="" width="500px" height="500px" margin-bottom="1.5"/>
+                </Grid>
+                <Grid xs={12} style={{ backgroundColor:"white"}}>
+                </Grid>
+                </Grid>
+
     </>
 )
 }
