@@ -1,5 +1,5 @@
 
-
+import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
 import './Home.css';
 import { Box, Button, Grid, Typography } from "@mui/material";
 
@@ -19,14 +19,15 @@ return(
                 </Box>
                 </Grid>
                 <Grid item xs={3} >
-                    <img src="./images/agrvai.jpg" alt="" width="500px" height="500px" margin-bottom="1.5"/>
+                    <img src="./images/agrvai.jpg" alt="" width="556px" height="700px" margin-bottom="1.5"/>
                 </Grid>
                 <Grid xs={12} className="postagens">
+                    <TabPostagem/>
                 </Grid>
                 </Grid>
 
     </>
-)
+);
 }
 
 export default Home;
