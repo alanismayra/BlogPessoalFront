@@ -1,33 +1,74 @@
-
 import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
 import './Home.css';
 import { Box, Button, Grid, Typography } from "@mui/material";
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
+import { useNavigate } from 'react-router-dom';
+import useLocalStorage from 'react-use-localstorage';
+import { useEffect } from 'react';
 
 function Home() {
-return(
-    <>
-   <Grid container direction="row" justifyContent="Center" alignItems="center" className='caixa' >
-    <Grid alignItems="center" item xs={6}>
-        <Box paddingX={5} >
-            <Typography variant="h3" gutterBottom color="textPrimary" component="h3" align="center" className='titulo'>Seja bem vindo(a)!</Typography>
-            <Typography variant="h5" gutterBottom color="textPrimary" component="h5" align="center" className='titulo'>Conte aqui seus sonhos e momentos mais felizes!</Typography>
-        </Box>
-        <Box display='flex' justifyContent='center'>
-            <Box marginRight={1}>
-                </Box>
-                <Button variant="outlined" className='botao'>Ver Postagens</Button>
-                </Box>
-                </Grid>
-                <Grid item xs={3} >
-                    <img src="./images/agrvai.jpg" alt="" width="556px" height="700px" margin-bottom="1.5"/>
-                </Grid>
-                <Grid xs={12} className="postagens">
-                    <TabPostagem/>
-                </Grid>
-                </Grid>
 
-    </>
-);
+    let navigate = useNavigate();
+    const [token, setToken] = useLocalStorage('token');
+    
+    useEffect(() => {
+      if (token == "") {
+          alert("Você precisa estar logado")
+          navigate("/login")
+  
+      }
+  }, [token])
+
+    const items = [
+
+        <div className="item" data-value="1" >
+            <img src="./images/img5.jpg" width={1490} height={500} />
+        </div>,
+        <div className="item" data-value="1" >
+            <img src="./images/img6.jpg" width={1490} height={500} />
+        </div>,
+         <div className="item" data-value="1" >
+            <img src="./images/img5.jpg" width={1490} height={500} />
+        </div>,
+         <div className="item" data-value="1" >
+            <img src="./images/img6.jpg" width={1490} height={500} />
+        </div>
+    ]
+
+    return (
+        <>
+            <div className='App'>
+                <AliceCarousel
+                    autoHeight
+                    infinite
+                    mouseTracking
+                    items={items}
+                />
+            </div>
+
+            <Grid container direction="row" justifyContent="Center" alignItems="center" className='caixa' >
+                <Grid alignItems="center" item xs={6}>
+                    <Box paddingX={5} >
+                        <Typography variant="h3" gutterBottom color="textPrimary" component="h3" align="center" className='titulo'>Seja bem vindo(a)!</Typography>
+                        <Typography variant="h5" gutterBottom color="textPrimary" component="h5" align="center" className='titulo'>Conte aqui seus sonhos e momentos mais felizes!</Typography>
+                    </Box>
+                    <Box display='flex' justifyContent='center'>
+                        <Box marginRight={1}>
+                            <ModalPostagem/>
+                        </Box>
+                        <Button variant="outlined" className='botao'>Ver Postagens</Button>
+                    </Box>
+                </Grid>
+                
+                <Grid xs={12} className="postagens">
+                    <TabPostagem />
+                </Grid>
+            </Grid>
+
+        </>
+    );
 }
 
 export default Home;
