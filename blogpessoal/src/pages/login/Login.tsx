@@ -3,12 +3,15 @@ import './Login.css';
 import { Box, Grid, TextField, Typography, Button } from "@material-ui/core";
 import { Link, useNavigate } from 'react-router-dom';
 import UserLogin from '../../models/UserLogin';
-import useLocalStorage from 'react-use-localstorage';
 import { login } from '../../services/Service';
+import { useDispatch } from 'react-redux';
+import { addToken } from '../../store/tokens/Action';
+
 function Login() {
 
     let navigate = useNavigate();
-    const [token, setToken] = useLocalStorage('token');// faz o controle do token dentro do localStorage
+    const dispatch = useDispatch();
+    const [token, setToken] = useState('');// faz o controle do token dentro do localStorage
 
     const [userLogin, setUserLogin] = useState<UserLogin>( //userLogin é acessar informaçoes do state e o setUserLogin é para alterar
         {
@@ -30,6 +33,7 @@ function Login() {
 
     useEffect(() => {
         if (token != '') {
+            dispatch(addToken(token));
             navigate('/home')
         }
     }, [token])

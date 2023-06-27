@@ -4,14 +4,18 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
-import { useNavigate } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../store/tokens/TokenReducer';
 
 function Home() {
 
     let navigate = useNavigate();
-    const [token, setToken] = useLocalStorage('token');
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state)=> state.tokens
+    );// acessa o store, pega o token e atribui a const token
+
     
     useEffect(() => {
       if (token == "") {
@@ -58,7 +62,9 @@ function Home() {
                         <Box marginRight={1}>
                             <ModalPostagem/>
                         </Box>
+                        <Link to="/posts">
                         <Button variant="outlined" className='botao'>Ver Postagens</Button>
+                        </Link>
                     </Box>
                 </Grid>
                 
