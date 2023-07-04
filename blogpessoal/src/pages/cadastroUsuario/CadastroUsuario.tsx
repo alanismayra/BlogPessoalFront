@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { Box, Button, Grid, TextField, Typography } from '@material-ui/core';
 import './CadastroUsuario.css';
 import { Link, useNavigate } from 'react-router-dom';
